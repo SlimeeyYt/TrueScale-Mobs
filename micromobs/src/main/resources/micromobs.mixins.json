@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.slimeey.micromobs.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "LivingEntitySoundMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+

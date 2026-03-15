@@ -1,0 +1,28 @@
+# JetBrains / IDE
+.idea/
+*.iml
+out/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# MicroMobs generated files
+micromobs/.gradle/
+micromobs/build/
+micromobs/run/
+micromobs/out/
+micromobs/.idea/
+
+# Gradle temp files
+micromobs/**/.classpath
+micromobs/**/.project
+micromobs/**/.settings/
+
+# Runtime / crash / local data
+micromobs/*.log
+micromobs/hs_err_pid*
+micromobs/replay_pid*
+
