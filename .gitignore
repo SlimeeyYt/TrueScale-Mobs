@@ -1,0 +1,26 @@
+# JetBrains / IDE
+.idea/
+*.iml
+out/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Gradle / Loom / Fabric generated files
+.gradle/
+build/
+run/
+out/
+
+# Gradle temp files
+**/.classpath
+**/.project
+**/.settings/
+
+# Runtime / crash / local data
+hs_err_pid*
+replay_pid*
+

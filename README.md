@@ -55,7 +55,7 @@ biological proportions.
 From the project root, run:
 
 ```powershell
-cd "D:\\Slimeey Studios\\actual size\\micromobs"
+cd "D:\\Slimeey Studios\\actual size"
 Set-ExecutionPolicy -Scope Process Bypass -Force
 .\\test-client.ps1 -PrepOnly
 ```
@@ -76,27 +76,17 @@ $env:JAVA_HOME = "C:\path\to\jdk-21"
 java -version   # should print 21.x.x
 ```
 
-### 2 — Download the Gradle wrapper JAR
+### 2 — Wrapper / setup
 
-The wrapper JAR is not included in source control.  Run **one** of the
-following depending on what you have installed:
+The Gradle wrapper is already included in the repository, so in most cases you
+can build immediately.
 
-**Option A - Gradle installed globally:**
+If you ever need to re-download or repair the wrapper locally, run:
+
 ```powershell
-cd "D:\\Slimeey Studios\\actual size\\micromobs"
-gradle wrapper --gradle-version 9.2.1
-```
-
-**Option B — Use the provided setup script:**
-```powershell
-cd "D:\\Slimeey Studios\\actual size\\micromobs"
+cd "D:\\Slimeey Studios\\actual size"
 .\setup.ps1
 ```
-
-**Option C - Download manually:**
-Download `gradle-wrapper.jar` from:
-`https://raw.githubusercontent.com/gradle/gradle/v9.2.1/gradle/wrapper/gradle-wrapper.jar`
-and place it at `gradle/wrapper/gradle-wrapper.jar`.
 
 ### 3 — Build
 
@@ -212,7 +202,7 @@ future Yarn build the mixin silently no-ops rather than crashing.
 |---|---|
 | `Attribute GENERIC_SCALE not found` | Update to Minecraft 1.21.1; GENERIC_SCALE requires ≥ 1.20.5 |
 | `EntityAttributeModifier.Operation.ADD_VALUE` not found | You are on a pre-1.20.5 mapping; use `ADD` instead |
-| Wrapper JAR missing | Run `gradle wrapper --gradle-version 9.2.1` or download it manually (see step 2) |
+| Wrapper JAR missing | Run `./setup.ps1` or regenerate the wrapper locally |
 | Sound mixin fails silently | Normal behaviour — `require = 0` means an incompatible method signature just disables the pitch injection |
 | Mob still vanilla size after installing | The mod requires Fabric API on the mods list; double-check it is present |
 
@@ -221,7 +211,7 @@ future Yarn build the mixin silently no-ops rather than crashing.
 ## Project structure
 
 ```
-micromobs/
+.
 ├── build.gradle
 ├── gradle.properties
 ├── settings.gradle
@@ -229,7 +219,10 @@ micromobs/
 ├── LICENSE
 ├── README.md
 ├── gradle/wrapper/
+│   ├── gradle-wrapper.jar
 │   └── gradle-wrapper.properties
+├── setup.ps1
+├── test-client.ps1
 └── src/main/
     ├── java/com/slimeey/micromobs/
     │   ├── MicroMobs.java            ← mod entrypoint
