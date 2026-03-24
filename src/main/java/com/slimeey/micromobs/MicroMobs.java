@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * MicroMobs — Realistic Mob Sizes
- * Fabric mod for Minecraft 1.21.1
+ * Fabric mod for Minecraft 1.21.11
  *
- * Rescales mobs to closer real-world proportions using the GENERIC_SCALE
+ * Rescales mobs to closer real-world proportions using the SCALE
  * entity attribute introduced in Minecraft 1.20.5.
  */
 public class MicroMobs implements ModInitializer {

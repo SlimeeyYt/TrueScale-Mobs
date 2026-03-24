@@ -1,6 +1,6 @@
 # MicroMobs — Realistic Mob Sizes
 
-A Fabric mod for **Minecraft 1.21.1** that rescales mobs to closer real-world
+A Fabric mod for **Minecraft 1.21.11** that rescales mobs to closer real-world
 biological proportions.
 
 ---
@@ -25,7 +25,7 @@ biological proportions.
 
 ## Features
 
-- **GENERIC_SCALE attribute** — scales model, hitbox, eye-height and shadow in
+- **SCALE attribute** — scales model, hitbox, eye-height and shadow in
   one shot using Minecraft's built-in attribute system (no render hacks).
 - **Speed boost for tiny mobs** — Spider ×1.2, Bee ×1.15, Silverfish & Endermite ×1.3.
 - **Higher pitch sounds** — Bee, Silverfish, Endermite play at elevated pitch.
@@ -40,9 +40,9 @@ biological proportions.
 | Dependency | Version |
 |---|---|
 | Java (JDK) | 21+ (or any JDK — toolchain auto-provisions 21) |
-| Minecraft | 1.21.1 |
+| Minecraft | 1.21.11 |
 | Fabric Loader | 0.18.4 |
-| Fabric API | 0.116.9+1.21.1 |
+| Fabric API | 0.141.3+1.21.11 |
 | Gradle wrapper | 9.2.1 (auto-downloaded) |
 | Fabric Loom | 1.15.5 |
 
@@ -106,10 +106,10 @@ build\libs\micromobs-1.0.0.jar
 
 ## Installation
 
-1. Install [Fabric Loader 0.18.4+](https://fabricmc.net/use/) for Minecraft 1.21.1.
-2. Install [Fabric API](https://modrinth.com/mod/fabric-api) for 1.21.1.
+1. Install [Fabric Loader 0.18.4+](https://fabricmc.net/use/) for Minecraft 1.21.11.
+2. Install [Fabric API](https://modrinth.com/mod/fabric-api) for 1.21.11.
 3. Drop `micromobs-1.0.0.jar` into your `.minecraft/mods/` folder.
-4. Launch Minecraft 1.21.1 with the Fabric profile.
+4. Launch Minecraft 1.21.11 with the Fabric profile.
 
 On first launch the config file is written to:
 ```
@@ -166,9 +166,9 @@ mobs.  Set `enableSoundAdjustments` to `false` to keep vanilla sound pitch.
 
 ## Technical notes
 
-### Why GENERIC_SCALE?
+### Why SCALE?
 
-`GENERIC_SCALE` (added in Minecraft 1.20.5) is the official attribute for
+`SCALE` (added in Minecraft 1.20.5) is the official attribute for
 proportional entity scaling.  Setting it to 0.25 scales the entire entity —
 hitbox, eye-height, shadow, renderer — in one attribute write.  No per-tick
 code, no render injection required.
@@ -183,7 +183,7 @@ spawned naturally, from a spawner, via command, or by spawn egg.
 ### Slimes & Magma Cubes
 
 These mobs scale their dimensions dynamically based on their "size" tag
-(1, 2, 4).  Applying `GENERIC_SCALE = 0.70` uniformly reduces every size tier
+(1, 2, 4).  Applying `SCALE = 0.70` uniformly reduces every size tier
 by 30 %, so a large slime becomes 70 % of its vanilla large size, etc.
 
 ### Sound pitch
@@ -200,7 +200,7 @@ future Yarn build the mixin silently no-ops rather than crashing.
 
 | Symptom | Fix |
 |---|---|
-| `Attribute GENERIC_SCALE not found` | Update to Minecraft 1.21.1; GENERIC_SCALE requires ≥ 1.20.5 |
+| `Attribute SCALE not found` | Update to Minecraft 1.21.11; SCALE requires >= 1.20.5 |
 | `EntityAttributeModifier.Operation.ADD_VALUE` not found | You are on a pre-1.20.5 mapping; use `ADD` instead |
 | Wrapper JAR missing | Run `./setup.ps1` or regenerate the wrapper locally |
 | Sound mixin fails silently | Normal behaviour — `require = 0` means an incompatible method signature just disables the pitch injection |

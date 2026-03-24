@@ -14,10 +14,10 @@ import net.minecraft.util.Identifier;
  * Registers the ENTITY_LOAD event and applies two attribute modifiers to
  * qualifying mobs:
  *
- *   1. GENERIC_SCALE  — changes the visual model, hitbox, eye-height and
+ *   1. SCALE  — changes the visual model, hitbox, eye-height and
  *                       shadow size proportionally.  Introduced in MC 1.20.5.
  *
- *   2. GENERIC_MOVEMENT_SPEED / GENERIC_FLYING_SPEED  — small speed bump for
+ *   2. MOVEMENT_SPEED / FLYING_SPEED  — small speed bump for
  *                       tiny creatures so they remain a threat.
  *
  * Both modifiers are added with addPersistentModifier(), meaning they are
@@ -40,7 +40,7 @@ public class MobScaleManager {
             if (!(entity instanceof LivingEntity living)) return;
 
             EntityAttributeInstance scaleAttr =
-                    living.getAttributeInstance(EntityAttributes.GENERIC_SCALE);
+                    living.getAttributeInstance(EntityAttributes.SCALE);
 
             // Guard: only apply once (persistent modifier is saved in NBT)
             if (scaleAttr == null || scaleAttr.getModifier(SCALE_MOD_ID) != null) return;
@@ -62,7 +62,7 @@ public class MobScaleManager {
         // Operation ADD_VALUE:  finalValue = baseValue(1.0) + modifier
         // So modifier = targetScale - 1.0  →  finalValue = targetScale  ✓
         EntityAttributeInstance scaleAttr =
-                entity.getAttributeInstance(EntityAttributes.GENERIC_SCALE);
+                entity.getAttributeInstance(EntityAttributes.SCALE);
         if (scaleAttr != null) {
             scaleAttr.addPersistentModifier(new EntityAttributeModifier(
                     SCALE_MOD_ID,
@@ -88,7 +88,7 @@ public class MobScaleManager {
     private static void applySpeedBoost(LivingEntity entity, double speedBoost) {
         // Ground movement speed
         EntityAttributeInstance speedAttr =
-                entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+                entity.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED);
         if (speedAttr != null && speedAttr.getModifier(SPEED_MOD_ID) == null) {
             speedAttr.addPersistentModifier(new EntityAttributeModifier(
                     SPEED_MOD_ID,
@@ -99,7 +99,7 @@ public class MobScaleManager {
 
         // Flying speed (Bees, Parrots etc.)
         EntityAttributeInstance flyAttr =
-                entity.getAttributeInstance(EntityAttributes.GENERIC_FLYING_SPEED);
+                entity.getAttributeInstance(EntityAttributes.FLYING_SPEED);
         if (flyAttr != null && flyAttr.getModifier(SPEED_MOD_ID) == null) {
             flyAttr.addPersistentModifier(new EntityAttributeModifier(
                     SPEED_MOD_ID,
